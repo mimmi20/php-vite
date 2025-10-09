@@ -55,5 +55,9 @@
         "names": [
             "plus.css"
         ]
+    },
+    "public/img/favicon.ico": {
+        "file": "assets/favicon-zR_S-YMI.ico",
+        "src": "public/img/favicon.ico"
     }
 }

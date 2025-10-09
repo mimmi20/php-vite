@@ -217,15 +217,17 @@ class Manifest
                 $tags[] = "<link rel=\"modulepreload\" href=\"{$this->base_path}{$chunk->file}\" />";
             }
 
-            if (str_ends_with($chunk->file, '.css') && isset($this->preload_types['css'])) {
-                $preload = $this->preload_types['css'];
+            // Preload assets:
+
+            ['extension' => $extension] = pathinfo($chunk->file);
+
+            if (isset($this->preload_types[$extension])) {
+                $preload = $this->preload_types[$extension];
                 $type = $preload['type'];
                 $as = $preload['as'];
 
                 $tags[] = "<link rel=\"preload\" as=\"{$as}\" type=\"{$type}\" href=\"{$this->base_path}{$chunk->file}\" />";
             }
-
-            // Preload assets:
 
             foreach ($chunk->assets as $asset) {
                 $type = substr($asset, strrpos($asset, '.') + 1);
@@ -288,10 +290,6 @@ class Manifest
 
             if ($chunk === null) {
                 throw new RuntimeException("Entry not found in manifest: {$entry}");
-            }
-
-            if (! $chunk->isEntry) {
-                throw new RuntimeException("Chunk is not an entry point: {$entry}");
             }
 
             $chunks[$entry] = $chunk;
