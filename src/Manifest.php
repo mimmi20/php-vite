@@ -121,6 +121,17 @@ class Manifest
     }
 
     /**
+     * Register MIME types for preloading common web font formats.
+     */
+    public function preloadStyles(): void
+    {
+        $this->preload_types = [
+            ...$this->preload_types,
+            'css' => ['type' => 'text/css', 'as' => 'style'],
+        ];
+    }
+
+    /**
      * Create preload, CSS and JS tags for the specified entry point script(s).
      *
      * Entry points are defined in Vite's `build.rollupOptions` using RollUp's `input` setting.
@@ -204,6 +215,14 @@ class Manifest
 
             if (str_ends_with($chunk->file, '.js')) {
                 $tags[] = "<link rel=\"modulepreload\" href=\"{$this->base_path}{$chunk->file}\" />";
+            }
+
+            if (str_ends_with($chunk->file, '.css') && isset($this->preload_types['css'])) {
+                $preload = $this->preload_types['css'];
+                $type = $preload['type'];
+                $as = $preload['as'];
+
+                $tags[] = "<link rel=\"preload\" as=\"{$as}\" type=\"{$type}\" href=\"{$this->base_path}{$chunk->file}\" />";
             }
 
             // Preload assets:

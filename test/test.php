@@ -98,6 +98,8 @@ test(
         );
 
         $vite->preloadImages();
+        $vite->preloadFonts();
+        $vite->preloadStyles();
 
         $tags = $vite->createTags("main.js", "consent-banner.js", "public/scss/themes/admin/admin.scss", "public/css/plus.css");
 
@@ -111,6 +113,8 @@ test(
                 '<link rel="modulepreload" href="/dist/assets/shared.83069a53.js" />',
                 // Preload `views/foo.js` entry point script:
                 '<link rel="modulepreload" href="/dist/assets/consent-banner.0e3b3b7b.js" />',
+                '<link rel="preload" as="style" type="text/css" href="/dist/assets/admin-B8_LVhy3.css" />',
+                '<link rel="preload" as="style" type="text/css" href="/dist/assets/plus-DwWFnKP0.css" />',
             ],
         );
 
