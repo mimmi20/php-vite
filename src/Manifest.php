@@ -235,6 +235,10 @@ class Manifest
             foreach ($chunk->css as $css) {
                 $tags[] = "<link rel=\"stylesheet\" href=\"{$this->base_path}{$css}\" />";
             }
+
+            if (str_ends_with($chunk->file, '.css') && $chunk->isEntry) {
+                $tags[] = "<link rel=\"stylesheet\" href=\"{$this->base_path}{$chunk->file}\" />";
+            }
         }
 
         return implode("\n", $tags);
@@ -248,7 +252,7 @@ class Manifest
         $tags = [];
 
         foreach ($chunks as $chunk) {
-            if ($chunk->isEntry) {
+            if (str_ends_with($chunk->file, '.js') && $chunk->isEntry) {
                 $tags[] = "<script type=\"module\" src=\"{$this->base_path}{$chunk->file}\"></script>";
             }
         }

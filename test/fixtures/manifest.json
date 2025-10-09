@@ -39,5 +39,21 @@
         "css": [
             "assets/shared.a834bfc3.css"
         ]
+    },
+    "public/scss/themes/admin/admin.scss": {
+        "file": "assets/admin-B8_LVhy3.css",
+        "src": "public/scss/themes/admin/admin.scss",
+        "isEntry": true,
+        "names": [
+            "admin.css"
+        ]
+    },
+    "public/css/plus.css": {
+        "file": "assets/plus-DwWFnKP0.css",
+        "src": "public/css/plus.css",
+        "isEntry": true,
+        "names": [
+            "plus.css"
+        ]
     }
 }

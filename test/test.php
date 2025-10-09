@@ -99,7 +99,7 @@ test(
 
         $vite->preloadImages();
 
-        $tags = $vite->createTags("main.js", "consent-banner.js");
+        $tags = $vite->createTags("main.js", "consent-banner.js", "public/scss/themes/admin/admin.scss", "public/css/plus.css");
 
         eq(
             explode("\n", $tags->preload),
@@ -123,6 +123,8 @@ test(
                 '<link rel="stylesheet" href="/dist/assets/shared.a834bfc3.css" />',
                 // CSS imported by the consent-banner entry point script:
                 '<link rel="stylesheet" href="/dist/assets/consent-banner.8ba40300.css" />',
+                '<link rel="stylesheet" href="/dist/assets/admin-B8_LVhy3.css" />',
+                '<link rel="stylesheet" href="/dist/assets/plus-DwWFnKP0.css" />',
             ]
         );
 
