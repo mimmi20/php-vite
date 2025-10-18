@@ -292,6 +292,10 @@ class Manifest
                 throw new RuntimeException("Entry not found in manifest: {$entry}");
             }
 
+            if ((str_ends_with($chunk->file, '.js') || str_ends_with($chunk->file, '.css')) && ! $chunk->isEntry) {
+                throw new RuntimeException("Chunk is not an entry point: {$entry}");
+            }
+
             $chunks[$entry] = $chunk;
 
             // Recursively find all statically imported chunks:
