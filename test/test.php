@@ -98,7 +98,6 @@ test(
         );
 
         $vite->preloadImages();
-        $vite->preloadFonts();
         $vite->preloadStyles();
 
         $tags = $vite->createTags("main.js", "consent-banner.js", "public/scss/themes/admin/admin.scss", "public/css/plus.css", "public/img/favicon.ico");
