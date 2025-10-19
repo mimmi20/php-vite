@@ -121,7 +121,7 @@ class Manifest
     }
 
     /**
-     * Register MIME types for preloading common web font formats.
+     * Register MIME types for preloading stylesheets.
      */
     public function preloadStyles(): void
     {
@@ -292,6 +292,7 @@ class Manifest
                 throw new RuntimeException("Entry not found in manifest: {$entry}");
             }
 
+            // only check .js and .css files, because images dont get the "isEntry" information in the manifest
             if ((str_ends_with($chunk->file, '.js') || str_ends_with($chunk->file, '.css')) && ! $chunk->isEntry) {
                 throw new RuntimeException("Chunk is not an entry point: {$entry}");
             }
